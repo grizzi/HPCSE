@@ -1,0 +1,25 @@
+cmake_minimum_required(VERSION 3.9)
+project(mpi)
+
+find_package(MPI)
+include_directories(SYSTEM ${MPI_INCLUDE_PATH})
+
+#add_custom_target(mpi_intro main.c)
+add_executable(mpi_intro main.c)
+add_executable(mpi_broadcast broadcast.c)
+add_executable(mpi_reduce reduce.c)
+add_executable(mpi_reduce2all reduce2all.c)
+add_executable(mpi_gather gather.c)
+add_executable(mpi_gatherv gather_v.c)
+add_executable(mpi_scatterv scatter_v.c)
+
+
+target_link_libraries(mpi_intro ${MPI_C_LIBRARIES})
+target_link_libraries(mpi_broadcast ${MPI_C_LIBRARIES})
+target_link_libraries(mpi_reduce ${MPI_C_LIBRARIES})
+target_link_libraries(mpi_reduce2all ${MPI_C_LIBRARIES})
+target_link_libraries(mpi_gather ${MPI_C_LIBRARIES})
+target_link_libraries(mpi_gatherv ${MPI_C_LIBRARIES})
+target_link_libraries(mpi_scatterv ${MPI_C_LIBRARIES})
+
+

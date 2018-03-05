@@ -55,7 +55,8 @@ int main(int *argc, char **argv) {
      * requests to complete, using the blocking operations Waitall
      */
     MPI_Waitall(4, requests_array, status_array);
-
+//  MPI_Waitall(4, requests_array, MPI_STATUSES_IGNORE);    in the case you want to ignore the statuses
+    
     // Check that we received the correct values
     printf("#%d After message passing  - (x=%f, x_prev=%f, x_succ=%f)\n", proc_id, x, x_prev, x_succ);
 

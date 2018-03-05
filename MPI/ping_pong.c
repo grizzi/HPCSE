@@ -64,9 +64,21 @@ int main(int *argc, char **argv)
             }
             else if(proc_id == receiver)
             {
+
                 printf("#%d : I will receive something, send_buffer=%d, receive_buffer=%d\n", proc_id, send_buffer, recv_buffer);
-                MPI_Recv(&recv_buffer, 1, MPI_INT, sender, 0,MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+
+                // For the second case we try to use the MPI_STATUS to retrieve information about the recieved data
+                MPI_Status status;
+                int source_process, number_of_received_vars;
+
+
+                MPI_Recv(&recv_buffer, 1, MPI_INT, sender, 0,MPI_COMM_WORLD, &status);
                 printf("#%d : I received something, send_buffer=%d, receive_buffer=%d\n", proc_id, send_buffer, recv_buffer);
+
+                source_process = status.MPI_SOURCE;
+                MPI_Get_count(&status, MPI_INT, &number_of_received_vars);
+
+                printf("Received from process %d , %d value/s\n", source_process, number_of_received_vars);
 
                 // change the value of the send buffer to send back something different to first process
                 send_buffer = 3;

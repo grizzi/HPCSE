@@ -67,7 +67,7 @@ int main(int *argc, char **argv)
 
                 printf("#%d : I will receive something, send_buffer=%d, receive_buffer=%d\n", proc_id, send_buffer, recv_buffer);
 
-                // For the second case we try to use the MPI_STATUS to retrieve information about the recieved data
+                // For the second case we try to use the MPI_STATUS to retrieve information about the received data
                 MPI_Status status;
                 int source_process, number_of_received_vars;
 
@@ -75,6 +75,12 @@ int main(int *argc, char **argv)
                 MPI_Recv(&recv_buffer, 1, MPI_INT, sender, 0,MPI_COMM_WORLD, &status);
                 printf("#%d : I received something, send_buffer=%d, receive_buffer=%d\n", proc_id, send_buffer, recv_buffer);
 
+                /*
+                 * If a processor is expecting more than one messsage from a single other processor, message tags are used
+                    to distinguish between them. In that case, a value of MPI_ANY_TAG can be used, and the actual tag of a
+                    message can be retrieved with
+                                                        int tag = status.MPI_TAG;
+                 */
                 source_process = status.MPI_SOURCE;
                 MPI_Get_count(&status, MPI_INT, &number_of_received_vars);
 

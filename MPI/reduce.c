@@ -32,7 +32,7 @@ int main(int *argc, char **argv) {
     }
 
     /* With MPI_Reduce the root process collect and sum rand_num from any process in sum
-     * (aplplying the MPI_SUM operator), tested for the general case of a vector entry.
+     * (applying the MPI_SUM operator), tested for the general case of a vector entry.
      * Notice that we have to specify the length of the buffer (e.g.3rd param = 2)
      */
     MPI_Reduce(&rand_num, &sum, 2, MPI_FLOAT, MPI_SUM, target_proc, MPI_COMM_WORLD);

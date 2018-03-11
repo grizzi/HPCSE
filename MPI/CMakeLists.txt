@@ -17,6 +17,9 @@ add_executable(mpi_complexprod userop.c)
 add_executable(mpi_ping_pong ping_pong.c)
 add_executable(mpi_avg non_blocking_averaging.c)
 add_executable(mpi_io io.c)
+add_executable(mpi_computation_on_matrix computation_on_matrix.c)
+add_executable(mpi_pi_approx pi_approx.c)
+
 
 
 target_link_libraries(mpi_intro ${MPI_C_LIBRARIES})
@@ -31,6 +34,8 @@ target_link_libraries(mpi_complexprod ${MPI_C_LIBRARIES})
 target_link_libraries(mpi_ping_pong ${MPI_C_LIBRARIES})
 target_link_libraries(mpi_avg ${MPI_C_LIBRARIES})
 target_link_libraries(mpi_io ${MPI_C_LIBRARIES})
+target_link_libraries(mpi_computation_on_matrix ${MPI_C_LIBRARIES})
+target_link_libraries(mpi_pi_approx ${MPI_C_LIBRARIES})
 
 
 
